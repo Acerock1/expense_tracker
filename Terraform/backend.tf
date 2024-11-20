@@ -1,5 +1,5 @@
 module "s3_bucket" {
-  source = "modules/s3/s3.tf" 
+  source = "./Modules/s3/s3.tf"
 
   bucket_name         = "backend-for-project-1122"
   enable_versioning   = true
@@ -11,10 +11,10 @@ module "s3_bucket" {
 }
 
 module "dynamodb_table" {
-  source = "/modules/Dynamodb/dynamodb.tf" 
+  source = "./Modules/Dynamodb/dynamodb.tf"
 
   table_name       = "Terraform-lock-project"
-  hash_key         = "Lockid"
+  hash_key         = "UUID-hash"
   hash_key_type    = "S"
   billing_mode     = "PROVISIONED"
   enable_encryption = true
@@ -22,5 +22,4 @@ module "dynamodb_table" {
     Environment = "dev"
     Project     = "my-project"
   }
-  
 }

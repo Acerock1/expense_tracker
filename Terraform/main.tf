@@ -1,12 +1,8 @@
 
-### Step 3: Using the Module
 
-To use this module in a Terraform configuration, you would call it like this:
-
-```hcl
-module "s3_bucket" {
-  source = "./s3-module" # Update with path to the module
-  bucket_name = "my-unique-bucket-name"
+module "Expense-Tracker-Bucket" {
+  source = "./Modules/s3/s3.tf"
+  bucket_name = "expense-tracker-bucket-12"
   enable_versioning = true
   sse_algorithm = "AES256"
   tags = {
@@ -15,19 +11,12 @@ module "s3_bucket" {
   }
 }
 
-
-
-
-```hcl
-module "dynamodb_table" {
-  source = "./dynamodb-module" # Update with path to module
-
-  table_name = "my-table"
-  hash_key   = "id"
+module "Expense-Tracker-Table" {
+  source = "./Modules/Dynamodb/dynamodb.tf" 
+  table_name = "Expense-Tracker-Table"
+  hash_key = "id"
   hash_key_type = "S"
   billing_mode = "PROVISIONED"
-  read_capacity  = 5
-  write_capacity = 5
   enable_encryption = true
   tags = {
     Environment = "dev"
