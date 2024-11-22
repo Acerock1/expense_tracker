@@ -6,15 +6,15 @@ terraform {
     }
   }
 
-#  backend "s3" {
- #   bucket         = "your-s3-bucket-name"       
-  #  key            = "path/to/terraform.tfstate"  
-   # region         = "us-east-1"                 
-    #dynamodb_table = "your-dynamodb-table-name"   
-    #encrypt        = true                        
-  #}
+  backend "s3" {
+    bucket         = "backend-for-project-1122"
+    key            = "terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "Terraform-lock-project"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
-  region = "us-east-1"  
+  region = "us-east-2"
 }
